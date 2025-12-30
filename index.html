@@ -6,7 +6,6 @@
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex,nofollow">
 <title>underground.signal : off-grid</title>
-
 <style>
 /* ================= RESET ================= */
 * {
@@ -14,7 +13,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 html, body {
   width: 100%;
   height: 100%;
@@ -23,14 +21,12 @@ html, body {
   font-family: "Courier New", monospace;
   overflow: hidden;
 }
-
 /* ================= BACKGROUND ================= */
 canvas {
   position: fixed;
   inset: 0;
   z-index: 0;
 }
-
 /* ================= LAYOUT ================= */
 .wrapper {
   position: relative;
@@ -44,7 +40,6 @@ canvas {
   text-align: center;
   padding: 20px;
 }
-
 /* ================= PLAYER ================= */
 .player {
   display: flex;
@@ -52,13 +47,11 @@ canvas {
   align-items: center;
   gap: 18px;
 }
-
 .controls {
   display: flex;
   align-items: center;
   gap: 18px;
 }
-
 button {
   width: 78px;
   height: 78px;
@@ -70,12 +63,10 @@ button {
   cursor: pointer;
   transition: .3s;
 }
-
 button:hover {
   background: rgba(77,210,255,.15);
   box-shadow: 0 0 22px rgba(77,210,255,.6);
 }
-
 /* ================= VOLUME ================= */
 .volume {
   display: flex;
@@ -83,12 +74,10 @@ button:hover {
   align-items: center;
   gap: 4px;
 }
-
 .volume label {
   font-size: 10px;
   opacity: 0.6;
 }
-
 input[type="range"] {
   -webkit-appearance: none;
   width: 120px;
@@ -97,7 +86,6 @@ input[type="range"] {
   outline: none;
   opacity: 0.7;
 }
-
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 12px;
@@ -106,7 +94,6 @@ input[type="range"]::-webkit-slider-thumb {
   background: #4dd2ff;
   cursor: pointer;
 }
-
 /* ================= TEXT ================= */
 .text-block {
   display: flex;
@@ -114,24 +101,37 @@ input[type="range"]::-webkit-slider-thumb {
   gap: 6px;
   margin-top: 6px;
 }
-
 .main-text {
   font-size: 16px;
   letter-spacing: 1.2px;
 }
-
 .sub-text {
   font-size: 13px;
   letter-spacing: 2px;
   opacity: 0.9;
 }
-
 .footer-text {
   font-size: 10px;
   letter-spacing: 1px;
   opacity: 0.45;
 }
-
+/* ================= LINK ================= */
+.link {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  opacity: 0.7;
+  margin-top: 20px;
+}
+.link a {
+  color: #4dd2ff;
+  text-decoration: none;
+  border-bottom: 1px dotted #4dd2ff;
+  transition: 0.3s;
+}
+.link a:hover {
+  opacity: 0.8;
+  border-bottom: 1px solid #4dd2ff;
+}
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
   button {
@@ -139,35 +139,26 @@ input[type="range"]::-webkit-slider-thumb {
     height: 68px;
     font-size: 24px;
   }
-
   .main-text {
     font-size: 14px;
   }
-
   .sub-text {
     font-size: 12px;
   }
 }
 </style>
 </head>
-
 <body>
-
 <canvas id="stars"></canvas>
-
 <div class="wrapper">
-
   <div class="player">
-
     <div class="controls">
       <button id="play">▶</button>
-
       <div class="volume">
         <label>volume</label>
         <input type="range" id="volume" min="0" max="1" step="0.01" value="0.7">
       </div>
     </div>
-
     <div class="text-block">
       <div class="main-text">
         radio_underground.signal:off-grid.не для всіх.
@@ -179,9 +170,14 @@ input[type="range"]::-webkit-slider-thumb {
         ibonarium project 2026 by Roman Katyuschenko
       </div>
     </div>
-
   </div>
 
+  <!-- Новий блок з посиланням -->
+  <div class="link">
+    <a href="https://lavandaaudit.github.io/sun-ibonarium-cosmo-dynamics-lab-live/" target="_blank" rel="noopener">
+      sun.ibonarium
+    </a>
+  </div>
 </div>
 
 <audio id="audio" crossorigin="anonymous" preload="none">
@@ -192,18 +188,14 @@ input[type="range"]::-webkit-slider-thumb {
 /* ================= OFF-GRID ================= */
 delete navigator.sendBeacon;
 if (navigator.connection) navigator.connection.saveData = true;
-
 /* ================= AUDIO ================= */
 const audio = document.getElementById("audio");
 const playBtn = document.getElementById("play");
 const volume = document.getElementById("volume");
-
 let playing = false;
-
 volume.oninput = () => {
   audio.volume = volume.value;
 };
-
 playBtn.onclick = () => {
   if (!playing) {
     audio.volume = volume.value;
@@ -217,18 +209,15 @@ playBtn.onclick = () => {
     playing = false;
   }
 };
-
 /* ================= FULLSCREEN ================= */
 function fullscreen() {
   const el = document.documentElement;
   if (el.requestFullscreen) el.requestFullscreen().catch(()=>{});
 }
-
 /* ================= STARFIELD ================= */
 const s = document.getElementById("stars");
 const ctx = s.getContext("2d");
 let W, H, stars = [];
-
 function resize() {
   W = s.width = innerWidth;
   H = s.height = innerHeight;
@@ -240,31 +229,24 @@ function resize() {
 }
 resize();
 addEventListener("resize", resize);
-
 function draw() {
   ctx.fillStyle = "#000";
   ctx.fillRect(0,0,W,H);
-
   ctx.fillStyle = "#4dd2ff";
   stars.forEach(st => {
     st.z -= 0.2;
     if (st.z <= 0) st.z = W;
-
     const k = 128 / st.z;
     const x = (st.x - W/2) * k + W/2;
     const y = (st.y - H/2) * k + H/2;
-
     if (x > 0 && x < W && y > 0 && y < H) {
       const size = (1 - st.z / W) * 2;
       ctx.fillRect(x, y, size, size);
     }
   });
-
   requestAnimationFrame(draw);
 }
 draw();
 </script>
-
 </body>
 </html>
-
