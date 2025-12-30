@@ -115,12 +115,18 @@ input[type="range"]::-webkit-slider-thumb {
   letter-spacing: 1px;
   opacity: 0.45;
 }
-/* ================= LINK ================= */
+/* ================= LINKS ================= */
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px; /* відступ між посиланнями */
+  margin-top: 20px;
+}
 .link {
   font-size: 13px;
   letter-spacing: 1.5px;
   opacity: 0.7;
-  margin-top: 20px;
 }
 .link a {
   color: #4dd2ff;
@@ -172,11 +178,18 @@ input[type="range"]::-webkit-slider-thumb {
     </div>
   </div>
 
-  <!-- Новий блок з посиланням -->
-  <div class="link">
-    <a href="https://lavandaaudit.github.io/sun-ibonarium-cosmo-dynamics-lab-live/" target="_blank" rel="noopener">
-      sun.ibonarium
-    </a>
+  <!-- Блок з посиланнями -->
+  <div class="links">
+    <div class="link">
+      <a href="https://lavandaaudit.github.io/sun-ibonarium-cosmo-dynamics-lab-live/" target="_blank" rel="noopener">
+        sun.ibonarium
+      </a>
+    </div>
+    <div class="link">
+      <a href="https://lavandaaudit.github.io/ibonarium.planet.radar/" target="_blank" rel="noopener">
+        planet.radar
+      </a>
+    </div>
   </div>
 </div>
 
