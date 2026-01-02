@@ -7,7 +7,6 @@
 <meta name="robots" content="noindex,nofollow">
 <title>underground.signal : off-grid</title>
 <style>
-/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -21,13 +20,11 @@ html, body {
   font-family: "Courier New", monospace;
   overflow: hidden;
 }
-/* ================= BACKGROUND ================= */
 canvas {
   position: fixed;
   inset: 0;
   z-index: 0;
 }
-/* ================= LAYOUT ================= */
 .wrapper {
   position: relative;
   z-index: 2;
@@ -40,7 +37,6 @@ canvas {
   text-align: center;
   padding: 20px;
 }
-/* ================= PLAYER ================= */
 .player {
   display: flex;
   flex-direction: column;
@@ -67,7 +63,6 @@ button:hover {
   background: rgba(77,210,255,.15);
   box-shadow: 0 0 22px rgba(77,210,255,.6);
 }
-/* ================= VOLUME ================= */
 .volume {
   display: flex;
   flex-direction: column;
@@ -94,7 +89,6 @@ input[type="range"]::-webkit-slider-thumb {
   background: #4dd2ff;
   cursor: pointer;
 }
-/* ================= TEXT ================= */
 .text-block {
   display: flex;
   flex-direction: column;
@@ -115,11 +109,10 @@ input[type="range"]::-webkit-slider-thumb {
   letter-spacing: 1px;
   opacity: 0.45;
 }
-/* ================= LINKS ================= */
 .links {
   display: flex;
-  align-items: center;
-  gap: 32px; /* відступ між посиланнями в рядку */
+  align-items: flex-start;
+  gap: 32px;
   margin-top: 20px;
 }
 .link {
@@ -137,7 +130,12 @@ input[type="range"]::-webkit-slider-thumb {
   opacity: 0.8;
   border-bottom: 1px solid #4dd2ff;
 }
-/* ================= MOBILE ================= */
+.sub-link {
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  opacity: 0.55;
+}
 @media (max-width: 600px) {
   button {
     width: 68px;
@@ -151,13 +149,15 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 12px;
   }
   .links {
-    gap: 24px; /* трохи менше на мобілках */
+    gap: 24px;
   }
 }
 </style>
 </head>
+
 <body>
 <canvas id="stars"></canvas>
+
 <div class="wrapper">
   <div class="player">
     <div class="controls">
@@ -179,19 +179,25 @@ input[type="range"]::-webkit-slider-thumb {
       </div>
     </div>
   </div>
-  <!-- Посилання в один рядок -->
+
   <div class="links">
     <div class="link">
       <a href="https://lavandaaudit.github.io/sun-ibonarium-cosmo-dynamics-lab-live/" target="_blank" rel="noopener">
         sun.ibonarium
       </a>
+      <div class="sub-link">
+        <a href="https://lavandaaudit.github.io/ibonarium.ecology.radar/" target="_blank" rel="noopener">
+          → переход ecology radar
+        </a>
+      </div>
     </div>
+
     <div class="link">
       <a href="https://lavandaaudit.github.io/ibonarium.planet.radar/" target="_blank" rel="noopener">
         planet.radar
       </a>
     </div>
-    <!-- Нове посилання праворуч від planet.radar -->
+
     <div class="link">
       <a href="https://lavandaaudit.github.io/cosmo.dynamics/" target="_blank" rel="noopener">
         moon.ibonarium
@@ -199,21 +205,22 @@ input[type="range"]::-webkit-slider-thumb {
     </div>
   </div>
 </div>
+
 <audio id="audio" crossorigin="anonymous" preload="none">
   <source src="https://ice1.somafm.com/dronezone-128-mp3">
 </audio>
+
 <script>
-/* ================= OFF-GRID ================= */
 delete navigator.sendBeacon;
 if (navigator.connection) navigator.connection.saveData = true;
-/* ================= AUDIO ================= */
+
 const audio = document.getElementById("audio");
 const playBtn = document.getElementById("play");
 const volume = document.getElementById("volume");
 let playing = false;
-volume.oninput = () => {
-  audio.volume = volume.value;
-};
+
+volume.oninput = () => audio.volume = volume.value;
+
 playBtn.onclick = () => {
   if (!playing) {
     audio.volume = volume.value;
@@ -227,15 +234,16 @@ playBtn.onclick = () => {
     playing = false;
   }
 };
-/* ================= FULLSCREEN ================= */
+
 function fullscreen() {
   const el = document.documentElement;
   if (el.requestFullscreen) el.requestFullscreen().catch(()=>{});
 }
-/* ================= STARFIELD ================= */
+
 const s = document.getElementById("stars");
 const ctx = s.getContext("2d");
 let W, H, stars = [];
+
 function resize() {
   W = s.width = innerWidth;
   H = s.height = innerHeight;
@@ -247,6 +255,7 @@ function resize() {
 }
 resize();
 addEventListener("resize", resize);
+
 function draw() {
   ctx.fillStyle = "#000";
   ctx.fillRect(0,0,W,H);
@@ -268,4 +277,3 @@ draw();
 </script>
 </body>
 </html>
-
