@@ -34,7 +34,7 @@ canvas {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 28px;
+  gap: 18px;
   text-align: center;
   padding: 20px;
 }
@@ -42,12 +42,12 @@ canvas {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 12px;
 }
 .controls {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 12px;
 }
 button {
   width: 78px;
@@ -93,8 +93,8 @@ input[type="range"]::-webkit-slider-thumb {
 .text-block {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-top: 6px;
+  gap: 4px;
+  margin-top: 4px;
 }
 .main-text {
   font-size: 16px;
@@ -112,16 +112,19 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .links {
   display: flex;
-  align-items: flex-start;
-  gap: 32px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column; /* колонки замість рядків */
+  gap: 8px; /* зменшений інтервал між модулями */
+  margin-top: 10px;
+  align-items: center;
 }
 .link {
   font-size: 13px;
   letter-spacing: 1.5px;
   opacity: 0.7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 .link a {
   color: #4dd2ff;
@@ -134,7 +137,7 @@ input[type="range"]::-webkit-slider-thumb {
   border-bottom: 1px solid #4dd2ff;
 }
 .sub-link {
-  margin-top: 4px;
+  font-size: 12px;
 }
 @media (max-width: 600px) {
   button {
@@ -149,7 +152,7 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 12px;
   }
   .links {
-    gap: 24px;
+    gap: 6px;
   }
 }
 </style>
@@ -203,12 +206,10 @@ input[type="range"]::-webkit-slider-thumb {
       </a>
     </div>
 
-    <!-- ===== SOCIAL.LIVE BUTTON ===== -->
     <div class="link">
       <a href="#" onclick="openSocialLive()" rel="noopener">lavanda.soft</a>
     </div>
 
-    <!-- ===== IBONARIUM.TIME BUTTON ===== -->
     <div class="link">
       <a href="#" onclick="openIbonariumTime()" rel="noopener">ibonarium.time</a>
     </div>
@@ -298,3 +299,4 @@ function openIbonariumTime() {
 </script>
 </body>
 </html>
+
