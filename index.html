@@ -112,31 +112,29 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .links {
   display: flex;
-  flex-direction: column; /* колонки замість рядків */
-  gap: 8px; /* зменшений інтервал між модулями */
+  flex-direction: column;
+  gap: 10px;
   margin-top: 10px;
   align-items: center;
 }
-.link {
-  font-size: 13px;
-  letter-spacing: 1.5px;
-  opacity: 0.7;
+.row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .link a {
   color: #4dd2ff;
   text-decoration: none;
   border-bottom: 1px dotted #4dd2ff;
   transition: 0.3s;
+  font-size: 14px;
 }
 .link a:hover {
   opacity: 0.8;
   border-bottom: 1px solid #4dd2ff;
 }
-.sub-link {
+.sub-link a {
   font-size: 12px;
 }
 @media (max-width: 600px) {
@@ -151,8 +149,8 @@ input[type="range"]::-webkit-slider-thumb {
   .sub-text {
     font-size: 12px;
   }
-  .links {
-    gap: 6px;
+  .row {
+    gap: 12px;
   }
 }
 </style>
@@ -178,40 +176,23 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 
   <div class="links">
-    <div class="link">
-      <a href="https://lavandaaudit.github.io/sun-ibonarium-cosmo-dynamics-lab-live/" target="_blank" rel="noopener">
-        sun.ibonarium
-      </a>
-      <div class="sub-link">
-        <a href="https://lavandaaudit.github.io/ibonarium.ecology.radar/" target="_blank" rel="noopener">
-          ecology radar
-        </a>
-      </div>
+    <!-- Перший ряд -->
+    <div class="row">
+      <div class="link"><a href="https://lavandaaudit.github.io/sun-ibonarium-cosmo-dynamics-lab-live/" target="_blank" rel="noopener">sun.ibonarium</a></div>
+      <div class="link"><a href="https://lavandaaudit.github.io/ibonarium.planet.radar/" target="_blank" rel="noopener">planet.radar</a></div>
+      <div class="link"><a href="https://lavandaaudit.github.io/cosmo.dynamics/" target="_blank" rel="noopener">moon.ibonarium</a></div>
     </div>
 
-    <div class="link">
-      <a href="https://lavandaaudit.github.io/ibonarium.planet.radar/" target="_blank" rel="noopener">
-        planet.radar
-      </a>
-      <div class="sub-link">
-        <a href="https://lavandaaudit.github.io/ibonariumeconomy/" target="_blank" rel="noopener">
-          economy.lab
-        </a>
-      </div>
+    <!-- Другий ряд -->
+    <div class="row">
+      <div class="link"><a href="https://lavandaaudit.github.io/ibonarium.ecology.radar/" target="_blank" rel="noopener">ecology radar</a></div>
+      <div class="link"><a href="https://lavandaaudit.github.io/ibonariumeconomy/" target="_blank" rel="noopener">economy.lab</a></div>
+      <div class="link"><a href="#" onclick="openIbonariumTime()" rel="noopener">ibonarium.time</a></div>
     </div>
 
-    <div class="link">
-      <a href="https://lavandaaudit.github.io/cosmo.dynamics/" target="_blank" rel="noopener">
-        moon.ibonarium
-      </a>
-    </div>
-
-    <div class="link">
-      <a href="#" onclick="openSocialLive()" rel="noopener">lavanda.soft</a>
-    </div>
-
-    <div class="link">
-      <a href="#" onclick="openIbonariumTime()" rel="noopener">ibonarium.time</a>
+    <!-- Третій ряд -->
+    <div class="row">
+      <div class="link"><a href="#" onclick="openSocialLive()" rel="noopener">lavanda.soft</a></div>
     </div>
   </div>
 </div>
@@ -299,4 +280,3 @@ function openIbonariumTime() {
 </script>
 </body>
 </html>
-
