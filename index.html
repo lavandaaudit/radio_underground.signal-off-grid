@@ -17,11 +17,7 @@ html, body {
   font-family: "Courier New", monospace;
   overflow: hidden;
 }
-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
+canvas { position: fixed; inset: 0; z-index: 0; }
 .wrapper {
   position: relative;
   z-index: 2;
@@ -92,20 +88,9 @@ input[type="range"]::-webkit-slider-thumb {
   gap: 4px;
   margin-top: 4px;
 }
-.main-text {
-  font-size: 16px;
-  letter-spacing: 1.2px;
-}
-.sub-text {
-  font-size: 13px;
-  letter-spacing: 2px;
-  opacity: 0.9;
-}
-.footer-text {
-  font-size: 10px;
-  letter-spacing: 1px;
-  opacity: 0.45;
-}
+.main-text { font-size: 16px; letter-spacing: 1.2px; }
+.sub-text { font-size: 13px; letter-spacing: 2px; opacity: 0.9; }
+.footer-text { font-size: 10px; letter-spacing: 1px; opacity: 0.45; }
 .links {
   display: flex;
   flex-direction: column;
@@ -172,23 +157,28 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 
   <div class="links">
+    <!-- 1 ряд -->
     <div class="row">
-      <div class="link"><a href="https://lavandaaudit.github.io/sun-ibonarium-cosmo-dynamics-lab-live/" target="_blank" rel="noopener">sun.ibonarium</a></div>
-      <div class="link"><a href="https://lavandaaudit.github.io/ibonarium.planet.radar/" target="_blank" rel="noopener">planet.radar</a></div>
-      <div class="link"><a href="https://lavandaaudit.github.io/cosmo.dynamics/" target="_blank" rel="noopener">moon.ibonarium</a></div>
+      <div class="link"><a href="https://lavandaaudit.github.io/sun-ibonarium-cosmo-dynamics-lab-live/" target="_blank">sun.ibonarium</a></div>
+      <div class="link"><a href="https://lavandaaudit.github.io/ibonarium.planet.radar/" target="_blank">planet.radar</a></div>
+      <div class="link"><a href="https://lavandaaudit.github.io/cosmo.dynamics/" target="_blank">moon.ibonarium</a></div>
     </div>
 
+    <!-- 2 ряд (ecology → translator → magnet) -->
     <div class="row">
+      <div class="link"><a href="https://lavandaaudit.github.io/ibonarium.ecology.radar/" target="_blank">ecology.radar</a></div>
       <div class="link"><a href="#" onclick="openIbonariumTime()">.translator</a></div>
       <div class="link"><a href="#" id="magnetLab" onclick="openMagnetLab()">.magnet.lab</a></div>
     </div>
 
+    <!-- 3 ряд -->
     <div class="row">
       <div class="link"><a href="#" onclick="openCriptoLabLive()">cripto.lab.live</a></div>
       <div class="link"><a href="#" onclick="openSocialLive()">lavanda.soft</a></div>
       <div class="link"><a href="#" onclick="openIbonariumTV()">ibonarium.tv</a></div>
     </div>
 
+    <!-- 4 ряд -->
     <div class="row">
       <div class="link"><a href="#" onclick="openSolarStability()">solar.stability</a></div>
       <div class="link"><a href="#" onclick="openIModular01()">i.modular.01</a></div>
@@ -252,7 +242,6 @@ function draw() {
   ctx.fillStyle = "#000";
   ctx.fillRect(0,0,W,H);
   ctx.fillStyle = "#4dd2ff";
-
   stars.forEach(st => {
     st.z -= 0.2;
     if (st.z <= 0) st.z = W;
@@ -268,7 +257,7 @@ function draw() {
 }
 draw();
 
-// ================= MAGNETIC STORM (REAL NOAA) =================
+// ================= MAGNETIC STORM (NOAA Kp) =================
 const magnetLink = document.getElementById("magnetLab");
 const KP_API = "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json";
 
