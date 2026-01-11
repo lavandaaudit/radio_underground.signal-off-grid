@@ -6,28 +6,142 @@
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex,nofollow">
 <title>underground.signal : off-grid</title>
+
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { width: 100%; height: 100%; background: #000; color: #9fe7ff; font-family: "Courier New", monospace; overflow: hidden; }
-canvas { position: fixed; inset: 0; z-index: 0; }
-.wrapper { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 18px; text-align: center; padding: 20px; }
-.player { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.controls { display: flex; align-items: center; gap: 12px; }
-button { width: 78px; height: 78px; border-radius: 50%; border: 1px solid #4dd2ff; background: transparent; color: #4dd2ff; font-size: 26px; cursor: pointer; transition: .3s; }
-button:hover { background: rgba(77,210,255,.15); box-shadow: 0 0 22px rgba(77,210,255,.6); }
-.volume { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.volume label { font-size: 10px; opacity: 0.6; }
-input[type="range"] { -webkit-appearance: none; width: 120px; height: 2px; background: #4dd2ff; outline: none; opacity: 0.7; }
-input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #4dd2ff; cursor: pointer; }
-.text-block { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
-.main-text { font-size: 16px; letter-spacing: 1.2px; }
-.sub-text { font-size: 13px; letter-spacing: 2px; opacity: 0.9; }
-.footer-text { font-size: 10px; letter-spacing: 1px; opacity: 0.45; }
-.links { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; align-items: center; }
-.row { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-.link a { color: #4dd2ff; text-decoration: none; border-bottom: 1px dotted #4dd2ff; transition: 0.3s; font-size: 14px; }
-.link a:hover { opacity: 0.8; border-bottom: 1px solid #4dd2ff; }
-.sub-link a { font-size: 12px; }
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  color: #9fe7ff;
+  font-family: "Courier New", monospace;
+  overflow: hidden;
+}
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+.wrapper {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+  padding: 20px;
+}
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+button {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 1px solid #4dd2ff;
+  background: transparent;
+  color: #4dd2ff;
+  font-size: 26px;
+  cursor: pointer;
+  transition: .3s;
+}
+button:hover {
+  background: rgba(77,210,255,.15);
+  box-shadow: 0 0 22px rgba(77,210,255,.6);
+}
+.volume {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.volume label {
+  font-size: 10px;
+  opacity: 0.6;
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 120px;
+  height: 2px;
+  background: #4dd2ff;
+  outline: none;
+  opacity: 0.7;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4dd2ff;
+  cursor: pointer;
+}
+.text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+.main-text {
+  font-size: 16px;
+  letter-spacing: 1.2px;
+}
+.sub-text {
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
+.footer-text {
+  font-size: 10px;
+  letter-spacing: 1px;
+  opacity: 0.45;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: center;
+}
+.row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.link a {
+  color: #4dd2ff;
+  text-decoration: none;
+  border-bottom: 1px dotted #4dd2ff;
+  transition: 0.3s;
+  font-size: 14px;
+}
+.link a:hover {
+  opacity: 0.8;
+  border-bottom: 1px solid #4dd2ff;
+}
+
+/* ===== MAGNETIC STORM PULSE ===== */
+@keyframes magnetPulse {
+  0%   { box-shadow: 0 0 0 rgba(77,210,255,0.0); }
+  50%  { box-shadow: 0 0 18px rgba(77,210,255,0.9); }
+  100% { box-shadow: 0 0 0 rgba(77,210,255,0.0); }
+}
+.magnet-storm {
+  animation: magnetPulse 1.4s infinite;
+  border-bottom: 1px solid #4dd2ff !important;
+}
+
 @media (max-width: 600px) {
   button { width: 68px; height: 68px; font-size: 24px; }
   .main-text { font-size: 14px; }
@@ -36,8 +150,11 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12p
 }
 </style>
 </head>
+
 <body>
+
 <canvas id="stars"></canvas>
+
 <div class="wrapper">
   <div class="player">
     <div class="controls">
@@ -53,43 +170,48 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12p
       <div class="footer-text">ibonarium project 2026 by lavanda audit</div>
     </div>
   </div>
+
   <div class="links">
-    <!-- Перший ряд -->
     <div class="row">
       <div class="link"><a href="https://lavandaaudit.github.io/sun-ibonarium-cosmo-dynamics-lab-live/" target="_blank" rel="noopener">sun.ibonarium</a></div>
       <div class="link"><a href="https://lavandaaudit.github.io/ibonarium.planet.radar/" target="_blank" rel="noopener">planet.radar</a></div>
       <div class="link"><a href="https://lavandaaudit.github.io/cosmo.dynamics/" target="_blank" rel="noopener">moon.ibonarium</a></div>
     </div>
-    <!-- Другий ряд -->
+
     <div class="row">
-      <div class="link"><a href="https://lavandaaudit.github.io/ibonarium.ecology.radar/" target="_blank" rel="noopener">ecology.radar</a></div>
-      <div class="link"><a href="#" onclick="openIbonariumTime()" rel="noopener">.translator</a></div>
+      <div class="link"><a href="#" onclick="openIbonariumTime()">.translator</a></div>
+      <div class="link"><a href="#" id="magnetLab" onclick="openMagnetLab()">.magnet.lab</a></div>
     </div>
-    <!-- Третій ряд -->
+
     <div class="row">
-      <div class="link"><a href="#" onclick="openCriptoLabLive()" rel="noopener">cripto.lab.live</a></div>
-      <div class="link"><a href="#" onclick="openSocialLive()" rel="noopener">lavanda.soft</a></div>
-      <div class="link"><a href="#" onclick="openIbonariumTV()" rel="noopener">ibonarium.tv</a></div>
+      <div class="link"><a href="#" onclick="openCriptoLabLive()">cripto.lab.live</a></div>
+      <div class="link"><a href="#" onclick="openSocialLive()">lavanda.soft</a></div>
+      <div class="link"><a href="#" onclick="openIbonariumTV()">ibonarium.tv</a></div>
     </div>
-    <!-- Четвертий ряд -->
+
     <div class="row">
-      <div class="link"><a href="#" onclick="openSolarStability()" rel="noopener">solar.stability</a></div>
-      <div class="link"><a href="#" onclick="openIModular01()" rel="noopener">i.modular.01</a></div>
+      <div class="link"><a href="#" onclick="openSolarStability()">solar.stability</a></div>
+      <div class="link"><a href="#" onclick="openIModular01()">i.modular.01</a></div>
     </div>
   </div>
 </div>
+
 <audio id="audio" crossorigin="anonymous" preload="none">
   <source src="https://ice1.somafm.com/dronezone-128-mp3">
 </audio>
+
 <script>
 // ================= AUDIO =================
 delete navigator.sendBeacon;
 if (navigator.connection) navigator.connection.saveData = true;
+
 const audio = document.getElementById("audio");
 const playBtn = document.getElementById("play");
 const volume = document.getElementById("volume");
 let playing = false;
+
 volume.oninput = () => audio.volume = volume.value;
+
 playBtn.onclick = () => {
   if (!playing) {
     audio.volume = volume.value;
@@ -103,6 +225,7 @@ playBtn.onclick = () => {
     playing = false;
   }
 };
+
 function fullscreen() {
   const el = document.documentElement;
   if (el.requestFullscreen) el.requestFullscreen().catch(()=>{});
@@ -112,17 +235,24 @@ function fullscreen() {
 const s = document.getElementById("stars");
 const ctx = s.getContext("2d");
 let W, H, stars = [];
+
 function resize() {
   W = s.width = innerWidth;
   H = s.height = innerHeight;
-  stars = Array.from({length: 160}, () => ({ x: Math.random() * W, y: Math.random() * H, z: Math.random() * W }));
+  stars = Array.from({length: 160}, () => ({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    z: Math.random() * W
+  }));
 }
 resize();
 addEventListener("resize", resize);
+
 function draw() {
   ctx.fillStyle = "#000";
   ctx.fillRect(0,0,W,H);
   ctx.fillStyle = "#4dd2ff";
+
   stars.forEach(st => {
     st.z -= 0.2;
     if (st.z <= 0) st.z = W;
@@ -138,6 +268,31 @@ function draw() {
 }
 draw();
 
+// ================= MAGNETIC STORM (REAL NOAA) =================
+const magnetLink = document.getElementById("magnetLab");
+const KP_API = "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json";
+
+async function checkMagneticStorm() {
+  try {
+    const res = await fetch(KP_API, { cache: "no-store" });
+    const data = await res.json();
+    const last = data[data.length - 1];
+    const kp = parseFloat(last[1]);
+
+    if (kp >= 5) {
+      magnetLink.classList.add("magnet-storm");
+      magnetLink.title = `GEOMAGNETIC STORM · Kp=${kp}`;
+    } else {
+      magnetLink.classList.remove("magnet-storm");
+      magnetLink.title = `Geomagnetic calm · Kp=${kp}`;
+    }
+  } catch (e) {
+    console.warn("Magnetic data unavailable");
+  }
+}
+checkMagneticStorm();
+setInterval(checkMagneticStorm, 10 * 60 * 1000);
+
 // ================= LINKS =================
 function openSocialLive() { window.open("https://lavandaaudit.github.io/lavanda.soft/", "_blank"); }
 function openIbonariumTime() { window.open("https://lavandaaudit.github.io/ibonarium.time/", "_blank"); }
@@ -145,6 +300,8 @@ function openCriptoLabLive() { window.open("https://lavandaaudit.github.io/ibona
 function openIbonariumTV() { window.open("https://lavandaaudit.github.io/history.musem.ibonarium/", "_blank"); }
 function openSolarStability() { window.open("https://lavandaaudit.github.io/human.stability.calendar/", "_blank"); }
 function openIModular01() { window.open("https://lavandaaudit.github.io/synthesizer/", "_blank"); }
+function openMagnetLab() { window.open("https://lavandaaudit.github.io/Geospace-Activity/", "_blank"); }
 </script>
+
 </body>
 </html>
