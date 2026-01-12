@@ -167,7 +167,7 @@ input[type="range"]::-webkit-slider-thumb {
     <!-- 2 ряд -->
     <div class="row">
       <div class="link"><a href="https://lavandaaudit.github.io/ibonarium.ecology.radar/" target="_blank">ecology.radar</a></div>
-      <div class="link"><a href="#" onclick="window.open('https://lavandaaudit.github.io/live.monitor.lab/', '_blank')">.translator</a></div>
+      <div class="link"><a href="#" id="translatorLink">.translator</a></div>
       <div class="link"><a href="#" id="magnetLab" onclick="openMagnetLab()">.magnet.lab</a></div>
     </div>
 
@@ -291,6 +291,12 @@ function openSolarStability() { window.open("https://lavandaaudit.github.io/huma
 function openIModular01() { window.open("https://lavandaaudit.github.io/synthesizer/", "_blank"); }
 function openMagnetLab() { window.open("https://lavandaaudit.github.io/Geospace-Activity/", "_blank"); }
 function openIDrum32() { window.open("https://lavandaaudit.github.io/ibonarium.drum.machine.32.v1.3/", "_blank"); }
+
+// ================= TRANSLATOR LINK =================
+const translatorLink = document.getElementById("translatorLink");
+translatorLink.onclick = () => {
+  window.open("https://lavandaaudit.github.io/live.monitor.lab/", "_blank");
+};
 </script>
 
 </body>
