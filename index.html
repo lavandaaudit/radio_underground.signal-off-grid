@@ -294,7 +294,8 @@ function openIDrum32() { window.open("https://lavandaaudit.github.io/ibonarium.d
 
 // ================= TRANSLATOR LINK =================
 const translatorLink = document.getElementById("translatorLink");
-translatorLink.onclick = () => {
+translatorLink.onclick = (e) => {
+  e.preventDefault(); // зупиняє перехід по href
   window.open("https://lavandaaudit.github.io/live.monitor.lab/", "_blank");
 };
 </script>
