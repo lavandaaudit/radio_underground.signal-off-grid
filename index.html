@@ -8,7 +8,7 @@
 <title>underground.signal : off-grid</title>
 
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }a
 html, body {
   width: 100%;
   height: 100%;
@@ -188,6 +188,7 @@ input[type="range"]::-webkit-slider-thumb {
     <!-- 5 ряд -->
     <div class="row">
       <div class="link"><a href="#" onclick="openEcoSystem()">eco.system</a></div>
+      <div class="link"><a href="#" onclick="openOceanLab()">ocean.lab</a></div>
     </div>
   </div>
 </div>
@@ -297,11 +298,12 @@ function openIModular01() { window.open("https://lavandaaudit.github.io/synthesi
 function openMagnetLab() { window.open("https://lavandaaudit.github.io/Geospace-Activity/", "_blank"); }
 function openIDrum32() { window.open("https://lavandaaudit.github.io/ibonarium.drum.machine.32.v1.3/", "_blank"); }
 function openEcoSystem() { window.open("https://lavandaaudit.github.io/ibonarium.eco.system.radar/", "_blank"); }
+function openOceanLab() { window.open("https://lavandaaudit.github.io/ocean.ibonarium.live.lab/", "_blank"); }
 
 // ================= TRANSLATOR LINK =================
 const translatorLink = document.getElementById("translatorLink");
 translatorLink.onclick = (e) => {
-  e.preventDefault(); // зупиняє перехід по href
+  e.preventDefault();
   window.open("https://lavandaaudit.github.io/live.monitor.lab/", "_blank");
 };
 </script>
