@@ -238,9 +238,7 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 </div>
 
-<audio id="audio" crossorigin="anonymous">
-  <source src="https://ice1.somafm.com/dronezone-128-mp3">
-</audio>
+<audio id="audio" preload="none"></audio>
 
 <script>
 // ================= AUDIO =================
@@ -248,15 +246,47 @@ const audio = document.getElementById("audio");
 const playBtn = document.getElementById("play");
 const volume = document.getElementById("volume");
 let playing = false;
+let reconnectAttempts = 0;
+const MAX_RECONNECT = 5;
+
+// Встановлюємо джерело стріму
+audio.src = "https://ice1.somafm.com/dronezone-128-mp3";
 
 volume.oninput = () => audio.volume = volume.value;
+
+// Обробка помилок та автоматичне перепідключення
+audio.onerror = (e) => {
+  console.warn("Audio error:", e);
+  if (playing && reconnectAttempts < MAX_RECONNECT) {
+    reconnectAttempts++;
+    setTimeout(() => {
+      audio.load();
+      audio.play().catch(err => console.warn("Reconnect failed:", err));
+    }, 2000);
+  }
+};
+
+// Скидання лічильника при успішному відтворенні
+audio.onplaying = () => {
+  reconnectAttempts = 0;
+};
+
+// Обробка буферизації
+audio.onwaiting = () => {
+  console.log("Buffering...");
+};
 
 playBtn.onclick = () => {
   if (!playing) {
     audio.volume = volume.value;
-    audio.play();
-    playBtn.textContent = "■";
-    playing = true;
+    audio.play().then(() => {
+      playBtn.textContent = "■";
+      playing = true;
+    }).catch(err => {
+      console.warn("Play failed:", err);
+      playBtn.textContent = "▶";
+      playing = false;
+    });
   } else {
     audio.pause();
     playBtn.textContent = "▶";
@@ -377,6 +407,3 @@ setInterval(spawnFormula, 2600);
 </script>
 </body>
 </html>
-
-
-
