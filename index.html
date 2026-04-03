@@ -340,7 +340,10 @@ async function checkMagneticStorm() {
     const res = await fetch(KP_API, { cache: "no-store" });
     const data = await res.json();
     const last = data[data.length - 1];
-    const kp = parseFloat(last[1]);
+    
+    // ВИПРАВЛЕНО: використання властивості .Kp замість індексу [1]
+    const kp = parseFloat(last.Kp);
+    
     if (kp >= 5) {
       magnetLink.classList.add("magnet-storm");
       magnetLink.title = `GEOMAGNETIC STORM · Kp=${kp}`;
@@ -348,8 +351,8 @@ async function checkMagneticStorm() {
       magnetLink.classList.remove("magnet-storm");
       magnetLink.title = `Geomagnetic calm · Kp=${kp}`;
     }
-  } catch {
-    console.warn("Magnetic data unavailable");
+  } catch (err) {
+    console.warn("Magnetic data unavailable", err);
   }
 }
 checkMagneticStorm();
@@ -407,3 +410,4 @@ setInterval(spawnFormula, 2600);
 </script>
 </body>
 </html>
+
